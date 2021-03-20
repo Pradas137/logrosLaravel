@@ -19,6 +19,17 @@ class CreatePostTbl extends Migration
             $table->text('description');
             $table->timestamps();
         });
+
+
+        Schema::create('students', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('name');
+            $table->string('email');
+            $table->string('phone');
+            $table->string('password');            
+            $table->timestamps();
+        });
+
     }
 
     /**
@@ -29,5 +40,6 @@ class CreatePostTbl extends Migration
     public function down()
     {
         Schema::dropIfExists('posts');
+        Schema::dropIfExists('students');
     }
 }
