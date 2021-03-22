@@ -29,6 +29,7 @@ class CreatePostTbl extends Migration
             $table->string('password');            
             $table->timestamps();
         });
+
     }
 
     /**
