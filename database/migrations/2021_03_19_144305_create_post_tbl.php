@@ -30,6 +30,23 @@ class CreatePostTbl extends Migration
             $table->timestamps();
         });
 
+        Schema::create('categorias', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('nombre');
+            $table->timestamps();
+        });
+
+        Schema::create('libros', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('titulo');
+            $table->mediumText('descripcion');
+            $table->text('contenido');
+            $table->timestamp('fecha')->nullable();
+            $table->unsignedBigInteger('categoria_id'); // Relación con categorias
+            $table->foreign('categoria_id')->references('id')->on('categorias'); // clave foranea
+            $table->timestamps();
+        });
+
     }
 
     /**
@@ -41,5 +58,7 @@ class CreatePostTbl extends Migration
     {
         Schema::dropIfExists('posts');
         Schema::dropIfExists('students');
+        Schema::dropIfExists('libros');
+        Schema::dropIfExists('categorias');
     }
 }
